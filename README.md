@@ -3,6 +3,8 @@ De instructie vind je in: [docs/INSTRUCTIONS.md](docs/INSTRUCTIONS.md)
 
 # Creative Coding Spikes
 
+## DE LINKS ZIJN AL GEOPEND IN DE ANDERE TABBLADEN
+
 **Scroll driven animation** <br>
 https://tygowolven-spike1.netlify.app/about-us
 
