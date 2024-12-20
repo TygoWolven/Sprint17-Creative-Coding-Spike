@@ -1,0 +1,321 @@
+---
+	import Layout from '../layouts/Layout.astro';
+	import Button from '../components/atoms/Button.astro';
+	import Handwriting from '../components/atoms/Handwriting.astro';
+---
+
+<script>
+function randomHeight(): number {
+  return Math.random() * (window.innerHeight);
+}
+
+function randomWidth(): number {
+  return Math.random() * (window.innerWidth);
+}
+
+let elementsCount = 200;
+for (let i = 0; i < elementsCount; i++) {
+     const element = document.createElement('div') as HTMLDivElement;
+	 element.classList.add('stars')
+     document.body.appendChild(element);
+}
+
+const allStars = document.querySelectorAll('.stars');
+
+console.log(allStars);
+
+allStars.forEach((star) => {
+	(star as HTMLDivElement).style.setProperty('top', `${randomHeight()}px`);  
+	(star as HTMLDivElement).style.setProperty('left', `${randomWidth()}px`);  
+});
+</script>
+
+<Layout>
+	<section id="home">
+		<h1>Tygo Wolven</h1>
+		<!-- <Handwriting color='var(--red)'/> -->
+	</section>
+
+	<section id="about">
+		<div class="text-container">
+			<h2>About me</h2>
+			<div>
+				<p class="animated-text">
+					Hi! My name is Tygo Wolven, and I'm 20 years old. I am currently studying to become a frontend 
+					developer at the Amsterdam University of Applied Sciences. Right now I am in the second year 
+					of a study called Frontend Design & Development, where we are learning to become a junior
+					frontender. Working with frameworks in a professional workflow is what keeps us busy at the moment.
+				</p>
+			</div>
+		</div>
+		<span class="alt-text start" aria-hidden="true">Don't read these texts.</span>
+		<span class="alt-text job"   aria-hidden="true">During my study I had a part-time job as bartender at a spanish restaurant.</span>
+		<span class="alt-text pet"   aria-hidden="true">You might not expect it, but I own a bearded dragon. A quite rare one actually, its a dwarf!</span>
+		<span class="alt-text joke1" aria-hidden="true">Don't tell me you've been reading everything so far? Really not listening uh? You got too much free time.</span>
+		<span class="alt-text joke2" aria-hidden="true">I don't want to hurt your feelings, but come on... Ever thought of shutting down your pc already?</span>
+		<span class="alt-text end"   aria-hidden="true">You read them all didnt ya?</span>
+	</section>
+
+	<section id="work">
+		<div class="sticky-wrapper">
+			<div class="animated-section">
+				<article>
+					<h2>Highlighted projects</h2>
+					<p>Scroll to see some of my highlighted work. Curious to see all my work? Feel free to visit my Github.</p>
+					<Button 
+						href="https://github.com/TygoWolven?tab=repositories"
+						title="My Github &rarr;"
+						warning='yes'
+					/>
+				</article>
+				<ul>
+					<li>
+						<a href="/detail/"><img src="/assets/images/bnr.jpg" alt="Business News Radio" id="img-transition"></a>
+					</li>
+					<li>
+						<img src="/assets/images/wogo.jpg" alt="Wogo Cocktail Walks">
+					</li>
+					<li>
+						<img src="/assets/images/hallen.jpg" alt="De Hallen">
+					</li>
+				</ul>
+			</div>
+		</div>
+	</section>
+
+	<section id="contact">
+		<h2>Get in touch</h2>
+		<p>Did you like what you see? Feel free to contact me!</p>
+	</section>
+</Layout>
+
+<style>
+	#home {
+		z-index: 100;
+		display: flex;
+		position: relative;
+		align-items: center;
+		flex-direction: column;
+		justify-content: center;
+		background: var(--raster);
+		background-size: 12.5vh 12.5vh;
+
+		& h1 {
+			font-size: min(30vw, 8rem);
+		}
+	}
+
+	#about {
+		height: 400vh;
+		background: var(--black);
+		position: relative;
+		view-timeline-name: --animation-scroller;
+
+		display: grid;
+		grid-template-columns: 1fr 1fr 1fr;
+		grid-template-areas: 
+    		". about start"
+    		"job about ."
+			"pet about joke1"
+    		"end about joke2";
+
+			& h2 {
+				color: var(--white);
+			}
+			& > p {
+				pointer-events: none;
+			}
+	}
+
+	.text-container {
+		grid-area: about;
+		position: sticky;
+		min-height: 100vh;
+		margin-top: -100vh;
+		max-width: 77ch;
+		z-index: 50;
+		top: 0;
+
+		display: flex;
+		align-items: center;
+		text-align: justify;
+		justify-self: center;
+		flex-direction: column;
+		justify-content: center;
+		align-self: start;
+	}
+
+	.animated-text {
+		--split-position: 0%;
+  		background:
+    		linear-gradient(
+				to right, 
+				#fff, 
+				#fff var(--split-position), 
+				var(--lightgrey) var(--split-position), 
+				var(--lightgrey)
+			);
+		display: inline;
+		color: transparent;
+  		background-clip: text;
+		background-repeat: no-repeat;
+		animation: revealText linear both;
+		animation-timeline: --animation-scroller;
+		animation-range: entry 50% cover 80%;
+	}
+
+	@property --split-position {
+  		syntax: "<percentage>";
+  		inherits: false;
+  		initial-value: 0%;
+	}
+
+	@keyframes revealText {
+  		to {
+    		--split-position: 100%;
+  		}
+	}
+
+	.alt-text {
+		width: fit-content;
+		height: fit-content;
+		color: var(--lightgrey);
+		font-size: 16px;
+	}
+
+	.start {
+		grid-area: start;
+		justify-self: end;
+		align-self: center;
+		transform-origin: top left;
+	}
+
+	.job {
+		grid-area: job;
+		align-self: center;
+		max-width: 30ch;
+		rotate: 90deg;
+	}
+
+	.pet {
+		grid-area: pet;
+		max-width: 36ch;
+	}
+
+	.joke1 {
+		grid-area: joke1;
+		max-width: 40ch;
+		rotate: -90deg;
+		transform-origin: top left;
+		justify-self: end;
+		align-self: end;
+	}
+
+	.joke2 {
+		grid-area: joke2;
+		max-width: 70%;
+		rotate: 180deg;
+		justify-self: center;
+	}
+
+	.end {
+		grid-area: end;
+		max-width: 36ch;
+		justify-self: center;
+		align-self: center;
+	}
+
+	#work {
+		padding: 0;
+		z-index: 100;
+		height: 400vh;
+		overflow: visible;
+		position: relative;
+		view-timeline-axis: block;		
+		view-timeline-name: --section-pin-tl;
+
+		& Button {
+			background: red;
+		}
+
+		& ul {
+			display: flex;
+
+			& li img {
+				width: 50vh;
+				aspect-ratio: 1;
+				object-fit: cover;
+				margin-left: var(--spacing);
+				filter: grayscale(1);
+				transition: var(--transition);
+			}
+
+			& li img:hover {
+				filter: grayscale(0);
+			}
+		}
+	}
+
+	#img-transition {
+		view-transition-name: image;
+	}
+
+	.sticky-wrapper {
+		display: flex;
+		position: sticky;
+		overflow-x: hidden;
+		height: 100vh;
+		width: 100vw;
+		top: 0;
+	}
+
+	.animated-section {
+		display: flex;
+		align-items: center;
+		background: var(--raster);
+		background-size: 12.5vh 12.5vh;
+		padding: 0 15vw;
+		height: 100vh;
+		width: fit-content;
+		will-change: transform;
+		animation: linear horizontal-scroll forwards;
+		animation-range: contain 0% contain 100%;
+		animation-timeline: --section-pin-tl;
+	}
+
+	@keyframes horizontal-scroll {
+		to {
+			transform: translateX(calc(-100% + 100vw));
+		}
+	}
+
+	#contact {
+		display: flex;
+		position: relative;
+		justify-content: center;
+		flex-direction: column;
+		align-items: center;
+		background: var(--black);
+
+		& h2, p {
+			color: var(--white);
+		}
+	}
+
+	/* Breakpoint for about section */
+	@media (max-width: 650px) {
+		#about {
+			grid-template-columns: 1fr;
+		}
+
+		.alt-text {
+			display: none;
+		}
+
+		#work ul li img {
+			width: 50vw;
+			height: 50vh;
+			aspect-ratio: unset;
+		}
+	}
+</style>

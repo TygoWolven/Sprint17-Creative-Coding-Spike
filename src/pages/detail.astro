@@ -1,0 +1,34 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Button from '../components/atoms/Button.astro';
+---
+
+<Layout>
+	<section>
+		<Button 
+			href="/"
+			title="&larr; Back to home"
+			warning="no"
+		/>		
+		<h1>Business News Radio</h1>
+		<p>This project was made with HTML, CSS and Javascript only. No frameworks or libraries were used.</p>
+        <img src="/assets/images/bnr.jpg" alt="Lake" id="img-transition">
+	</section>
+</Layout>
+
+<style>
+	section {
+		background: var(--raster);
+		background-size: 12.5vh 12.5vh;
+
+		& img {
+			width: 15vw;
+			aspect-ratio: 1;
+			object-fit: cover;
+		}
+	}
+
+    #img-transition {
+		view-transition-name: image;
+	}
+</style>

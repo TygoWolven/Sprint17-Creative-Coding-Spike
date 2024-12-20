@@ -1,0 +1,47 @@
+---
+interface Props {
+	href: string;
+	title: string;
+    warning: string;
+}
+
+const { href, title, warning } = Astro.props;
+---
+
+<a href={href} class={warning}>
+    {title}
+</a>
+
+<style>
+    a {
+        position: relative;
+        display: inline-block;
+        padding: 0.75rem 1.75rem;
+        background: var(--white);
+        margin: calc(var(--spacing) / 3) 0;
+        border: 1px solid var(--black);
+        transition: var(--transition);
+        text-decoration: none;
+    } 
+
+    a.yes::before {
+        content: "You are about to leave this website";
+        position: absolute;
+        bottom: -60%;
+        left: 0;
+        width: fit-content;
+        white-space: nowrap;
+        display: none;
+        color: var(--red);
+    }
+
+    a:hover {
+        background: var(--lightgrey);
+    }
+
+    a:hover::before {
+        display: block;
+    }
+</style>    
+
+
