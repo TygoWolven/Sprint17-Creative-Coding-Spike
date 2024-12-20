@@ -6,11 +6,6 @@
 </div>
 
 <style>
-  @font-face {
-    font-family: 'Chewy';
-    src: url('fonts/Chewy.ttf') format('truetype');
-  }
-
   .explosion {
     animation: popBubblegum ease-in forwards;
     animation-timeline: scroll(y);

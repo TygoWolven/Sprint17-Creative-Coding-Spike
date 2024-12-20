@@ -29,6 +29,12 @@ h1, h2 {
   font-family: 'WonderfulChristmas';
   src: url('fonts/WonderfulChristmas.otf');
 }  
+
+@font-face {
+  font-family: 'Chewy';
+  src: url('fonts/Chewy.ttf') format('truetype');
+}
+
 /* CSS variables inspired by https://open-props.style/ */
 :root {
   /* colors */
