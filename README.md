@@ -1,10 +1,16 @@
 > _Fork_ deze deeltaak en ga aan de slag. 
 De instructie vind je in: [docs/INSTRUCTIONS.md](docs/INSTRUCTIONS.md)
 
-# Creative Coding Spike
+# Creative Coding Spikes
 
-Ontwerp en maak creatieve oplossingen voor de interface.
+**Scroll driven animation** <br>
+https://tygowolven-spike1.netlify.app/about-us
 
+**View driven animations** <br>
+https://tygowolven-spike2.netlify.app/about-us
+
+**Kerstsfeer** <br>
+https://tygowolven-spike3.netlify.app/about-us
 
 ## Licentie
 
