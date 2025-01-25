@@ -974,7 +974,7 @@
         height: 2rem;
         background: var(--accent2-primary);
         bottom: 1.5rem;
-        right: 0;
+        left: 90rem;
         animation: driving-car 30s infinite;
     }
 
